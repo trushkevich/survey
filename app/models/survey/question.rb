@@ -1,9 +1,9 @@
 module Survey
-  class Survey::Question < ActiveRecord::Base
+  class Question < ::ActiveRecord::Base
 
     self.table_name = "survey_questions"
 
-    acceptable_attributes :text, :survey, :options_attributes => Survey::Option::AccessibleAttributes
+    acceptable_attributes :text, :survey, :options_attributes => ::Survey::Option::AccessibleAttributes
 
     # relations
     belongs_to :survey

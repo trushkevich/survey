@@ -1,5 +1,5 @@
 module Survey
-  class Survey::Survey < ActiveRecord::Base
+  class Survey < ::ActiveRecord::Base
 
     self.table_name = "survey_surveys"
 
@@ -7,7 +7,7 @@ module Survey
       :finished,
       :active,
       :attempts_number,
-      :questions_attributes => Survey::Question::AccessibleAttributes
+      :questions_attributes => ::Survey::Question::AccessibleAttributes
 
     # relations
     has_many :attempts,  :dependent => :destroy
