@@ -1,3 +1,4 @@
+module Survey
   module ActiveRecord
     extend ActiveSupport::Concern
 
@@ -24,3 +25,4 @@
       end
     end
   end
+end
