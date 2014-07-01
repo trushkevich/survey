@@ -1,5 +1,5 @@
 module Survey
-  class Survey::Question < ActiveRecord::Base
+  class Question < ::ActiveRecord::Base
 
     self.table_name = "survey_questions"
 
