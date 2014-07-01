@@ -1,4 +1,3 @@
-module Survey
   module ActiveRecord
     extend ActiveSupport::Concern
 
@@ -13,16 +12,15 @@ module Survey
 
 
       def acceptable_attributes(*args)
-
-        self.const_set('AccessibleAttributes', args + [:id, :_destroy])
+        const = 'AccessibleAttributes'
+        self.send(:remove_const, const) if self.const_defined?(const)
+        self.const_set(const, args + [:id, :_destroy])
 
         in_rails_3 do
           if defined?(self.respond_to?(:attr_accessible))
-            attr_accessible(*self.const_get('AccessibleAttributes').map { |k| k.is_a?(Hash) ? k.keys.first : k })
+            attr_accessible(*self.const_get(const).map { |k| k.is_a?(Hash) ? k.keys.first : k })
           end
         end
-
       end
     end
   end
-end

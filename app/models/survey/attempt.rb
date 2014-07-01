@@ -1,5 +1,4 @@
-class Survey::Attempt < ActiveRecord::Base
-
+class Attempt < ::ActiveRecord::Base
   self.table_name = "survey_attempts"
 
   acceptable_attributes :winner, :survey, :survey_id,
@@ -12,7 +11,7 @@ class Survey::Attempt < ActiveRecord::Base
   belongs_to :participant, :polymorphic => true
   has_many :answers, :dependent => :destroy
   accepts_nested_attributes_for :answers,
-    :reject_if => ->(q) { q[:question_id].blank? || q[:option_id].blank? }
+    :reject_if => ->(q) { q[:question_id].blank? || q[:option_id].blank? || (q[:option_id].to_i == 0 && q[:text].blank?)}
 
   # validations
   validates :participant_id, :participant_type, :presence => true
